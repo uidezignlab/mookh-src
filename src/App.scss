@@ -1,0 +1,323 @@
+$doc‐font‐size: 16;
+$doc‐line‐height: 24;
+$landscape: landscape;
+$portrait: portrait;
+$mobile: 400;
+$tablet: 760;
+$desktop: 1200;
+$tv: 1500;
+@mixin mq($point, $query1: min, $query2: width, $IE9: false) {
+  @if $IE9 == true{
+    .lt‐ie9 & {
+      @content;
+    }
+  }
+  @media (#{$query1}-#{$query2}: $point / $doc‐font‐size +em) {
+    @content;
+  }
+}
+
+@mixin orient($orientation: landscape) {
+  @media (orientation : $orientation) {
+    @content;
+  }
+}
+
+
+
+#root{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.mookh-site-header{
+  width: 100%;
+  min-height: 600px;
+  background: #343a3a;
+  padding-top: 4rem;
+  .mookh-site-name{
+    width: 100%;
+    h1{
+      color: #FBEA2A;
+      text-align: center;
+      font:{
+        family: 'Maven Pro', sans-serif;
+        size: 75px;
+      }
+    }
+  }
+  .mookh-customer-merchant{
+    margin-top: 4rem;
+    width: 100%;
+    padding: 1rem 13rem;
+    display: flex;
+    justify-content: space-between;
+    transition: padding 300ms linear;
+    .mookh-customer{
+      flex-basis: 47%;
+      .mookh-icon{
+        color: white;
+        font-size: 45px;
+        margin-bottom: 0.5rem;
+      }
+      h4 strong, h6 strong, p{
+        color: white;
+      }
+      h6{
+        margin: 1rem 0;
+      }
+      p{
+        font-size: 0.9rem;
+        width: 80%;
+      }
+      form{
+        margin-top: 2rem;
+        width: 80%;
+        .mookh-search{
+          width: 100%;
+          height: 40px;
+          position: relative;
+          input{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #d4d4d4;
+            background: transparent;
+            border-radius: 3px;
+            color: white;
+            padding: 0 3rem;
+            &::-webkit-input-placeholder{
+              color: white;
+            }
+            &:-moz-placeholder{
+              color: white;
+            }
+            &:-ms-input-placeholder{
+              color: white;
+            }
+          }
+          .mookh-search-icon{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: white;
+            padding-left: 1rem;
+          }
+        }
+      }
+      .user-action{
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    @include mq(1140, max){
+      padding: 1rem 5rem;
+      @include mq(875, max){
+        padding: 1rem 2rem;
+        @include mq(810, max){
+          flex-wrap: wrap;
+          .mookh-customer{
+            flex-basis: 100%;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            p, h4, h6{
+              text-align: center;
+            }
+            .user-action{
+               justify-content: center;
+               flex-wrap: wrap;
+               a{
+                 margin: 1rem;
+               }
+             }
+            @include mq(490, max){
+              p{
+                width: 100%;
+              }
+            }
+            &:last-child{
+              order: -1;
+            }
+          }
+          @include mq(490, max){
+            padding: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mookh-nav{
+  width: 100%;
+  height: 65px;
+  padding: 0 16rem;
+  border-bottom: 3px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  transition: padding 300ms linear;
+  a{
+    text-decoration: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    color: #608d8b;
+    transform: translateY(3px);
+    border-bottom: 3px  solid transparent;
+    transition: all 300ms;
+    &.current{
+      border-color: #FBEA2A;
+      color: black;
+    }
+  }
+  @include mq(1000, max){
+    padding: 0 10rem;
+    @include mq(810, max){
+      padding: 0 5rem;
+      @include mq(630, max){
+        padding: 0 2rem;
+        @include mq(505, max){
+          height: auto;
+          flex-wrap: wrap;
+          a{
+            width: auto;
+            margin: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mookh-items{
+  width: 100%;
+  padding: 3rem 13rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  transition: padding 300ms linear;
+  .item{
+    flex-basis: 31%;
+    margin-bottom: 2rem;
+    &>strong{
+      display: block;
+      margin: 0.5rem 0;
+    }
+    .item-content{
+      width: 100%;
+      background: whitesmoke;
+      .item-img{
+        width: 100%;
+        position: relative;
+        img{
+          width: 100%;
+        }
+        .item-logo{
+          width: 55px;
+          height: 55px;
+          border: 3px solid whitesmoke;
+          border-radius: 3px;
+          position: absolute;
+          right: 1rem;
+          bottom: -0.8rem;
+        }
+      }
+      .item-info{
+        width: 100%;
+        &>div{
+          padding: 1.5rem;
+          h6{
+            strong{
+              color: black;
+              font:{
+                family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                size: 0.9rem;
+              }
+            }
+          }
+          span{
+            font-size: 0.7rem;
+          }
+          strong{
+            color: #608d8b;
+            font-size: 0.9rem;
+          }
+          small{
+            font-size: 0.8rem;
+            color: black;
+            font-weight: lighter;
+          }
+        }
+        a{
+          display: block;
+          text-decoration: none;
+          outline:none;
+          border-top: 1px solid lightgrey;
+          padding: 0.6rem 1.5rem;
+          color: #608d8b;
+          text-align: center;
+          transition: all 300ms;
+          &:hover{
+            text-decoration: none;
+            color: black;
+            border-color: transparent;
+            background: #FBEA2A;
+          }
+        }
+      }
+    }
+  }
+  @include mq(1170, max){
+    padding: 3rem 5rem;
+    @include mq(910, max){
+      padding: 3rem 1rem;
+      @include mq(720, max){
+        .item{
+          flex-basis: 45%;
+          @include mq(485, max){
+            flex-basis: 80%;
+            @include mq(345, max){
+              flex-basis: 100%;
+            }
+          }
+        }
+        @include mq(485, max){
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+.mookh-btn{
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.4rem 1.5rem;
+  border: 1px solid white;
+  color: white;
+  border-radius: 3px;
+  font:{
+    weight: 600;
+    size: 0.9rem;
+  }
+  &:hover{
+    text-decoration: none;
+    color: #ff008a;
+  }
+  &.mookh-btn-highlight{
+    background: #FBEA2A;
+    color: black;
+    border: none;
+  }
+}
